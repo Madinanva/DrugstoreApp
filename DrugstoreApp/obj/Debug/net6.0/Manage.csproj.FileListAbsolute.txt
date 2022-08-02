@@ -16,3 +16,5 @@ C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\obj\Debug\net6.0\refi
 C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\obj\Debug\net6.0\Manage.pdb
 C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\obj\Debug\net6.0\Manage.genruntimeconfig.cache
 C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\obj\Debug\net6.0\ref\Manage.dll
+C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Madina Nva\source\repos\DrugstoreApp\DrugstoreApp\bin\Debug\net6.0\DataAccess.pdb

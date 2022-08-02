@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Abstractions
 {
-    internal interface IEntity
+    public interface IEntity
     {
+        public int Id { get; set; }
     }
 }
