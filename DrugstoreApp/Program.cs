@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Core.Helpers;
+
+namespace Manage
+{
+    public class Program
+    {
+        static void Main()
+        {
+            ConsoleHelper.WriteTextWithColor(ConsoleColor.Cyan, "Welcome");
+            Console.WriteLine("---");
+        }
+    }
+}
