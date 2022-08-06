@@ -1,6 +1,7 @@
 ﻿using Core.Constants;
 using Core.Helpers;
 using Manage.Controllers;
+using static Core.Constants.Options;
 
 namespace Manage
 {
@@ -10,16 +11,14 @@ namespace Manage
         {
             AdminController _adminController = new AdminController();
 
-        Authentication: var admin = _adminController.Authenticate();
+            Authentication: var admin = _adminController.Authenticate();
             if (admin != null)
             {
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Welcome");
                 Console.WriteLine("---");
-              Initial: Console.WriteLine("Please choose one of this options: 0-Owners, 1-Drugstores, 2-Drugs, 3-Druggists");
+                Main: Console.WriteLine("Please choose one of these options: 0-Owners, 1-Drugstores, 2-Drugs, 3-Druggists");
                 string number = Console.ReadLine();
-                try
-                {
-
+              
                     while (true)
                     {
                         if (number == "0")
@@ -46,23 +45,23 @@ namespace Manage
                                         {
                                             case (int)FirstOptions.CreateOwner:
                                                 _ownerController.CreateOwner();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FirstOptions.UpdateOwner:
                                                 _ownerController.UpdateOwner();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FirstOptions.DeleteOwner:
                                                 _ownerController.DeleteOwner();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FirstOptions.GetAllOwners:
                                                 _ownerController.GetAllOwners();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FirstOptions.Logout:
                                                 _ownerController.Logout();
-                                                goto Initial;
+                                                goto Main;
                                                 return;
                                         }
                                     }
@@ -102,31 +101,31 @@ namespace Manage
                                         {
                                             case (int)SecondOptions.CreateDrugstore:
                                                 _drugstoreController.CreateDrugstore();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.UpdateDrugstore:
                                                 _drugstoreController.UpdateDrugstore();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.DeleteDrugstore:
                                                 _drugstoreController.DeleteDrugstore();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.GetAllDrugstores:
                                                 _drugstoreController.GetAllDrugstores();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.GetAllDrugstoresByOwner:
                                                 _drugstoreController.GetAllDrugstoresByOwner();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.Sale:
                                                 _drugstoreController.Sale();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)SecondOptions.Logout:
                                                 _drugstoreController.Logout();
-                                                goto Initial;
+                                                goto Main;
                                                 return;
                                         }
                                     }
@@ -167,31 +166,31 @@ namespace Manage
                                         {
                                             case (int)ThirdOptions.CreateDrug:
                                                 _drugController.CreateDrug();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.UpdateDrug:
                                                 _drugController.UpdateDrug();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.DeleteDrug:
                                                 _drugController.DeleteDrug();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.GetAllDrugs:
                                                 _drugController.GetAllDrugs();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.GetAllDrugsByDrugstore:
                                                 _drugController.GetAllDrugsByDrugstore();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.Filter:
                                                 _drugController.Filter();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)ThirdOptions.Logout:
                                                 _drugController.Logout();
-                                                goto Initial;
+                                                goto Main;
                                                 return;
 
                                         }
@@ -231,27 +230,27 @@ namespace Manage
                                         {
                                             case (int)FourthOptions.CreateDruggist:
                                                 _druggistController.CreateDruggist();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FourthOptions.UpdateDruggist:
                                                 _druggistController.UpdateDruggist();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FourthOptions.DeleteDruggist:
                                                 _druggistController.DeleteDruggist();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FourthOptions.GetAllDruggist:
                                                 _druggistController.GetAllDruggist();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FourthOptions.GetAllDruggistByDrugstore:
                                                 _druggistController.GetAllDruggistByDrugstore();
-                                                goto Initial;
+                                                goto Main;
                                                 break;
                                             case (int)FourthOptions.Logout:
                                                 _druggistController.Logout();
-                                                goto Initial;
+                                                goto Main;
                                                 return;
                                         }
                                     }
@@ -262,17 +261,11 @@ namespace Manage
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Thanks for visiting");
-                                    break;
+                                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "Please, enter correct number");
                                 }
                             }
                         }
                     }
-                }
-                catch
-                {
-                    Console.WriteLine("Thanks for visiting");
-                }
             }
             else
             {

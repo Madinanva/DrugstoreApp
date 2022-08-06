@@ -22,16 +22,14 @@ namespace Manage.Controllers
             string name = Console.ReadLine();
             ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner surname:");
             string surname = Console.ReadLine();
-            var owner = new Owner
-            {
-                Name = name,
-                Surname = surname
-            };
+           Owner owner = new Owner();
+            owner.Name = name;
+            owner.Surname = surname;
 
             var dbOwner = _ownerRepository.Create(owner);
             if (dbOwner != null)
             {
-                ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, $"{dbOwner.Name} {dbOwner.Surname} is created");
+                ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, $"Fullname: {dbOwner.Name} {dbOwner.Surname} is created");
             }
             else
             {
@@ -48,7 +46,7 @@ namespace Manage.Controllers
                 {
                     ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {owner.Id}, Fullname: {owner.Name} {owner.Surname}");
                 }
-            Id: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner id:");
+                Id: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner id:");
                 string id = Console.ReadLine();
                 int ownerId;
                 var result = int.TryParse(id, out ownerId);
@@ -57,20 +55,21 @@ namespace Manage.Controllers
                     var dbOwner = _ownerRepository.Get(o => o.Id == ownerId);
                     if (dbOwner != null)
                     {
-                        string oldName = dbOwner.Name;
-                        string oldSurname = dbOwner.Surname;
+                        string name= dbOwner.Name;
+                        string surname = dbOwner.Surname;
+                        
                         ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner's new name");
                         string newName = Console.ReadLine();
                         ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner's new surname");
                         string newSurname = Console.ReadLine();
-                        var updatedOwner = new Owner
-                        {
-                            Id = dbOwner.Id,
-                            Name = newName,
-                            Surname = newSurname
-                        };
-                        _ownerRepository.Update(updatedOwner);
-                        ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, $"{oldName} {oldSurname} is updated to {newName} {newSurname}");
+
+                        dbOwner.Id = ownerId;
+                          dbOwner.Name = newName;
+                        dbOwner.Surname = newSurname;
+                       
+                  
+                        _ownerRepository.Update(dbOwner);
+                        ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, $"{name} {surname} is updated to {newName} {newSurname}");
                     }
                     else
                     {
@@ -99,7 +98,7 @@ namespace Manage.Controllers
                 {
                     ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {owner.Id}, Fullname: {owner.Name} {owner.Surname}");
                 }
-            Id: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner id:");
+                Id: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner id:");
                 string id = Console.ReadLine();
                 int ownerId;
                 var result = int.TryParse(id, out ownerId);
