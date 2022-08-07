@@ -25,7 +25,7 @@ namespace Manage.Controllers
             {
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter drug name");
                 string drugName = Console.ReadLine();
-                ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter drug price");
+            price: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter drug price");
                 string price = Console.ReadLine();
                 double drugPrice;
                 bool result = double.TryParse(price, out drugPrice);
@@ -58,6 +58,7 @@ namespace Manage.Controllers
                                     Count = drugCount,
                                     Drugstore = drugstore
                                 };
+                                drugstore.Drugs.Add(drug);
                                 _drugRepository.Create(drug);
                                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, $"Id: {drug.Id}, Name: {drugName}, Price: {drugPrice}, Count: {drugCount}, Drugstore: {drugstore.Name}");
                             }
@@ -82,6 +83,7 @@ namespace Manage.Controllers
                 else
                 {
                     ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "Please enter correct price");
+                    goto price;
                 }
             }
             else
@@ -431,6 +433,7 @@ namespace Manage.Controllers
                     else
                     {
                         ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "drug store doesn't exist with this id");
+                        goto id;
                     }
                 }
                 else
