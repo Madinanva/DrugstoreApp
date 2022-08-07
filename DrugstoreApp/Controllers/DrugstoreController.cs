@@ -51,7 +51,7 @@ namespace Manage.Controllers
                             Name = drugstoreName,
                             Address = drugstoreAddress,
                             ContactNumber = drugstoreContactNumber,
-                            Owner = dbOwner
+                            Owners = dbOwner
                             
                         };
                         dbOwner.Drugstores.Add(drugstore);
@@ -116,14 +116,14 @@ namespace Manage.Controllers
                                     dbDrugstore.Name = newName;
                                     dbDrugstore.Address = newAddress;
                                     dbDrugstore.ContactNumber = newContactNumber;
-                                    dbDrugstore.Owner = dbDrugstore.Owner;
+                                    dbDrugstore.Owners = dbDrugstore.Owners;
                                     _drugstoreRepository.Update(dbDrugstore);
                                     ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"The drugstore is updated. Id : {dbDrugstore.Id}, Name : {dbDrugstore.Name}, Address : {dbDrugstore.Address}, ContactNumber : {dbDrugstore.ContactNumber}");
 
                                     break;
                                 case 2:
                                     ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Owner List");
-                                    var owners = _ownerRepository.GetAll(dso => dso.Id != dbDrugstore.Owner.Id);
+                                    var owners = _ownerRepository.GetAll(dso => dso.Id != dbDrugstore.Owners.Id);
                                     if (owners.Count > 0)
                                     {
                                         foreach (var owner in owners)
@@ -146,8 +146,8 @@ namespace Manage.Controllers
                                                 dbDrugstore.Name = newName;
                                                 dbDrugstore.Address = newAddress;
                                                 dbDrugstore.ContactNumber = newContactNumber;
-                                                dbDrugstore.Owner = dbOwner;
-                                                ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"The drugstore is updated to- Id : {dbDrugstore.Id}, Name : {dbDrugstore.Name}, Address : {dbDrugstore.Address}, ContactNumber : {dbDrugstore.ContactNumber}, Owner: {dbDrugstore.Owner.Name}");
+                                                dbDrugstore.Owners = dbOwner;
+                                                ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"The drugstore is updated to- Id : {dbDrugstore.Id}, Name : {dbDrugstore.Name}, Address : {dbDrugstore.Address}, ContactNumber : {dbDrugstore.ContactNumber}, Owner: {dbDrugstore.Owners.Name}");
                                             }
                                             else
                                             {
@@ -210,7 +210,7 @@ namespace Manage.Controllers
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "All drugstores list:");
                 foreach (var drugstore in drugstores)
                 {
-                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name} OwnerName: {drugstore.Owner.Name}");
+                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name} OwnerName: {drugstore.Owners.Name}");
                 }
             Id: ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter drugstore id:");
                 string id = Console.ReadLine();
@@ -251,7 +251,7 @@ namespace Manage.Controllers
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "All drugstores list");
                 foreach (var drugstore in drugstores)
                 {
-                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name} OwnerName: {drugstore.Owner.Name}");
+                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name} OwnerName: {drugstore.Owners.Name}");
                 }
             }
             else
@@ -279,7 +279,7 @@ namespace Manage.Controllers
                     var owner = _ownerRepository.Get(o => o.Id == ownerId);
                     if (owner != null)
                     {
-                        var drugstore1 = _drugstoreRepository.GetAll(d => d.Owner != null ? d.Owner.Id == owner.Id : false);
+                        var drugstore1 = _drugstoreRepository.GetAll(d => d.Owners != null ? d.Owners.Id == owner.Id : false);
                         if (drugstore1.Count > 0)
                         {
                             ConsoleHelper.WriteTextWithColor(ConsoleColor.Cyan, "The drugstores of owner");
@@ -318,7 +318,7 @@ namespace Manage.Controllers
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "All drugstores list:");
                 foreach (var drugstore in drugstores)
                 {
-                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name}, Adress: {drugstore.Address}, ContactNumber: {drugstore.ContactNumber}, Owner: {drugstore.Owner.Name}");
+                    ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, $"Id: {drugstore.Id}, Name: {drugstore.Name}, Adress: {drugstore.Address}, ContactNumber: {drugstore.ContactNumber}, Owner: {drugstore.Owners.Name}");
                 }
                 string id = Console.ReadLine();
                 int choosenId;
@@ -365,13 +365,14 @@ namespace Manage.Controllers
                                                     {
                                                         if (totalD == totalPrice)
                                                         {
-                                                        drug.Count -= drugcount;
-                                                           
+                                                            drug.Count -= drugcount;
+                 
+                                                            ConsoleHelper.WriteTextWithColor(ConsoleColor.Green, "This drug is unavailable");
                                                         }
                                                         else
                                                         {
-                                                        ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "you have not entered the correct price");
-                                                    }
+                                                            ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "");
+                                                        }
                                                     }
                                                     else
                                                     {

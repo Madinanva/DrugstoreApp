@@ -27,5 +27,9 @@ namespace Manage.Controllers
             var admin = _adminRepository.Get(a => a.Username.ToLower() == username.ToLower() && PasswordHasher.Decyrpt(a.Password) == password);
             return admin;
         }
+        public Admin LogOut()
+        {
+            return Authenticate();
+        }
     }
 }
