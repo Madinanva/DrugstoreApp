@@ -22,7 +22,7 @@ namespace Manage.Controllers
             string name = Console.ReadLine();
             ConsoleHelper.WriteTextWithColor(ConsoleColor.Yellow, "Enter owner surname:");
             string surname = Console.ReadLine();
-           Owner owner = new Owner();
+            Owner owner = new Owner();
             owner.Name = name;
             owner.Surname = surname;
 
@@ -144,10 +144,6 @@ namespace Manage.Controllers
             {
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "There is no any owner");
             }
-        }
-        public void Logout()
-        {
-            ConsoleHelper.WriteTextWithColor(ConsoleColor.Magenta, "Thanks for using this application");
         }
     }
 }

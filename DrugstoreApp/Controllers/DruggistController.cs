@@ -249,9 +249,5 @@ namespace Manage.Controllers
                 ConsoleHelper.WriteTextWithColor(ConsoleColor.Red, "There is no any drugstore");
             }
         }
-        public void Logout()
-        {
-
-        }
     }
 }
